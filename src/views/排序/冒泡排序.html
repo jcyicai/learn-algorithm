@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>冒泡排序</title>
+  </head>
+  <body>
+    <script>
+      /**
+       * 冒泡排序
+       * 1. 首先，对 n 个元素执行“冒泡”，将数组的最大元素交换至正确位置。
+       * 2. 接下来，对剩余 n - 1 个元素执行“冒泡”，将第二大元素交换至正确位置。
+       * 3. 以此类推，经过 n - 1 轮“冒泡”后，前 大的元素都被交换至正确位置。
+       * 4. 仅剩的一个元素必定是最小元素，无须排序，因此数组排序完成。
+       */
+      const arr = [4, 1, 5, 6, 8, 9, 7]
+
+      function bubbleSort(arr) {
+        // 确保算法可执行
+        if (!(Array.isArray(arr) && arr.length)) {
+          return
+        }
+
+        /**
+         * 通过逆向遍历，
+         * 每一轮循环都确保未排序区间中的最大元素已经被放置在了该区间的最右端，
+         * 因此在下一轮循环时，
+         * 内循环只需要关注未排序区间中的剩余元素，
+         * 避免了对已经排序好的部分进行不必要的比较和交换
+         */
+        // 外循环：未排序区间为 [0, i]
+        for (let i = arr.length - 1; i > 0; i--) {
+          // 初始化标志位
+          let flag = false
+
+          // j < i 未排序区间的右边界
+          // 内循环：将未排序区间 [0, i] 中的最大元素交换至该区间的最右端
+          for (let j = 0; j < i; j++) {
+            // 如果 左侧 大于 右侧，则进行交换
+            if (arr[j] > arr[j + 1]) {
+              // 交换 nums[j] 与 nums[j + 1]
+              const temp = arr[j]
+              arr[j] = arr[j + 1]
+              arr[j + 1] = temp
+              // 记录交换元素
+              flag = true
+            }
+          }
+
+          // 此轮 “冒泡” 未交换任何元素，直接跳出
+          if (!flag) {
+            break
+          }
+        }
+      }
+
+      // console.time()  console.timeEnd() 打印执行耗时
+      console.time()
+      bubbleSort(arr)
+      console.timeEnd()
+
+      // 输出结果
+      console.log(arr)
+    </script>
+  </body>
+</html>
