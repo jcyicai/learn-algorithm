@@ -19,7 +19,7 @@
          * 3. 循环执行步骤 2. ，直到 i 和 j 相遇时停止，最后将基准数交换至两个子数组的分界线。
         */
 
-        const arr = [4, 1, 3, 2, 5, 7, 6, 8]
+        const arr = [4, 1, 5, 2, 8, 7, 6, 3]
 
         // 简单版 快排
         function simpleQuickSort(arr) {
@@ -51,7 +51,7 @@
             return left.concat(right)
         }
 
-        console.log(simpleQuickSort(arr))
+        //console.log(simpleQuickSort(arr))
 
         // 标准版 快排
         function swap(arr, a, b) {
@@ -68,11 +68,12 @@
                 do {
                     left++
                 } while (left < right && arr[left] < arr[begin])
-
+                console.log('left', left, arr[left])
                 do {
                     right--
                 } while (right > left && arr[right] > arr[begin])
-
+                console.log('right', arr[right])
+                console.log(left, right)
                 if (left < right) {
                     swap(arr, left, right)
                 }
