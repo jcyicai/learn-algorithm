@@ -62,8 +62,10 @@
 
         function quickSort(arr, begin, end) {
             if (begin >= end - 1) return
+
             let left = begin
             let right = end
+
             do {
                 do {
                     left++
@@ -78,17 +80,28 @@
                 }
             } while (left < right)
 
+            // 获取基准点
             let swapPoint = left === right ? right - 1 : right
+            // 交换位置
             swap(arr, begin, swapPoint)
+            // 左边区间排序
             quickSort(arr, begin, swapPoint)
+            // 右边区间排序
             quickSort(arr, swapPoint + 1, end)
         }
 
         function baseQuickSort(arr) {
+            if (!(Array.isArray(arr) && arr.length)) {
+                return
+            }
+
             quickSort(arr, 0, arr.length)
         }
 
+        // 执行
         baseQuickSort(arr)
+        
+        // 输出结果
         console.log(arr)
     </script>
 </body>
