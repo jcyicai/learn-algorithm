@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>二叉树</title>
+  </head>
+
+  <body>
+    <script>
+      /**
+       * 二叉树
+       *
+       * 常用术语：
+       *   1. 「根节点 root node」：位于二叉树顶层的节点，没有父节点
+       *   2. 「叶节点 leaf node」：没有子节点的节点，其两个指针均指向 None
+       *   3. 「边 edge」：连接两个节点的线段，即节点引用（指针）
+       *   4. 节点所在的「层 level」：从顶至底递增，根节点所在层为 1
+       *   5. 节点的「度 degree」：节点的子节点的数量。在二叉树中，度的取值范围是 0、1、2
+       *   6. 二叉树的「高度 height」：从根节点到最远叶节点所经过的边的数量
+       *   7. 节点的「深度 depth」：从根节点到该节点所经过的边的数量
+       *   8. 节点的「高度 height」：从距离该节点最远的叶节点到该节点所经过的边的数量
+       *
+       * 二叉树常见类型：
+       *   1. 完美二叉树（满二叉树）：所有叶节点都在最底层，每个非叶节点都有两个子节点
+       *   2. 完全二叉树：只有最底层的节点未被填满，且最底层节点尽量靠左填充。
+       *
+       * 二叉树遍历：
+       *   1. 前序遍历：先打印当前的，再打印左边的，再打印右边的
+       *   2. 中序遍历：先打印左边的，再打印当前的，再打印右边的
+       *   3. 后序遍历：先打印左边的，再打印右边的，再打印当前的
+       *
+       */
+
+      function Node(val) {
+        this.value = val
+        this.left = null
+        this.right = null
+      }
+
+      const a = new Node('a')
+      const b = new Node('b')
+      const c = new Node('c')
+      const d = new Node('d')
+      const e = new Node('e')
+      const f = new Node('f')
+      const g = new Node('g')
+
+      a.left = c
+      a.right = b
+      c.left = f
+      c.right = g
+      b.left = d
+      b.right = e
+
+      // 前序遍历
+      function preOrder(root) {
+        if (root === null) return
+        // 访问优先级：根节点 -> 左子树 -> 右子树
+        console.log(root.value)
+        preOrder(root.left)
+        preOrder(root.right)
+      }
+
+      preOrder(a)
+
+      // 中序遍历
+      function inOrder(root) {
+        if (root === null) return
+        // 访问优先级：左子树 -> 根节点 -> 右子树
+        inOrder(root.left)
+        console.log(root.value)
+        inOrder(root.right)
+      }
+
+      inOrder(a)
+
+      // 后序遍历
+      function postOrder(root) {
+        if (root === null) return
+        // 访问优先级：左子树 -> 右子树 -> 根节点
+        postOrder(root.left)
+        postOrder(root.right)
+        console.log(root.value)
+      }
+
+      postOrder(a)
+    </script>
+  </body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>二维数组和二维拓扑结构（图）</title>
+  </head>
+
+  <body>
+    <script>
+      // 二维数组 4 行 8 列
+      const arr = new Array(4)
+
+      for (let i = 0; i < arr.length; i++) {
+        arr[i] = new Array(8)
+      }
+
+      // 二维拓扑结构（图）
+      function Node(val) {
+        this.value = val
+        this.neighbor = []
+      }
+
+      const a = new Node('a')
+      const b = new Node('b')
+      const c = new Node('c')
+      const d = new Node('d')
+      const e = new Node('e')
+      const f = new Node('f')
+
+      a.neighbor.push(b)
+      a.neighbor.push(c)
+      a.neighbor.push(f)
+
+      b.neighbor.push(a)
+      b.neighbor.push(d)
+      b.neighbor.push(e)
+
+      c.neighbor.push(a)
+      d.neighbor.push(b)
+      e.neighbor.push(b)
+      f.neighbor.push(a)
+    </script>
+  </body>
+</html>

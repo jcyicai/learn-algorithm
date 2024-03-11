@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>栈和队列</title>
+  </head>
+  <body>
+    <script>
+      /**
+       * 栈
+       * 规则：先入后出
+       * 举例：类比成一个箱子，先放进去的，被压在下面
+       */
+
+      function Stack() {
+        this.arr = []
+        this.push = function (val) {
+          this.arr.push(val)
+        }
+        this.pop = function () {
+          return this.arr.pop()
+        }
+      }
+
+      const stack = new Stack()
+
+      stack.push(1)
+      stack.push(2)
+      stack.push(3)
+      console.log(stack.arr)
+      stack.pop()
+      console.log(stack.arr)
+
+      /**
+       * 队列
+       * 规则：先入先出
+       * 举例：类比成一个管道，先放进去的，先出去
+       */
+
+      function Queue() {
+        this.arr = []
+        this.push = function (val) {
+          this.arr.push(val)
+        }
+        this.shift = function () {
+          return this.arr.shift()
+        }
+      }
+
+      const queue = new Queue()
+
+      queue.push(1)
+      queue.push(2)
+      queue.push(3)
+      console.log(queue.arr)
+      queue.shift()
+      console.log(queue.arr)
+    </script>
+  </body>
+</html>

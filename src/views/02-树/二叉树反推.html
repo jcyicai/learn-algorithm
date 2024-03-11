@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>二叉树反推</title>
+  </head>
+
+  <body>
+    <script>
+      // 根据前序中序还原二叉树
+      const prevData = ['a', 'c', 'f', 'g', 'b', 'd', 'e']
+      const inData = ['f', 'c', 'g', 'a', 'd', 'b', 'e']
+
+      function Node(val) {
+        this.value = val
+        this.left = null
+        this.right = null
+      }
+
+      function prevInOrder(prevData, inData) {
+        if (
+          prevData === null ||
+          inData === null ||
+          prevData.length === 0 ||
+          inData.length === 0 ||
+          prevData.length !== inData.length
+        ) {
+          return
+        }
+        // 创建根节点，取前序中第一个
+        const root = new Node(prevData[0])
+        // 找到根节点在中序中的位置
+        const index = inData.indexOf(root.value)
+        // 前序遍历的左子树
+        const prevLeft = prevData.slice(1, 1 + index)
+        // 前序遍历的右子树
+        const prevRight = prevData.slice(1 + index, prevData.length)
+        // 中序遍历的左子树
+        const inLeft = inData.slice(0, index)
+        // 中序遍历的右子树
+        const inRight = inData.slice(index + 1, inData.length)
+        // 根据左子树的前序和中序还原左子树并赋值给 root.left
+        root.left = prevInOrder(prevLeft, inLeft)
+        // 根据右子树的前序和中序还原右子树并赋值给 root.right
+        root.right = prevInOrder(prevRight, inRight)
+        // 返回根节点
+        return root
+      }
+
+      console.log(prevInOrder(prevData, inData))
+
+      // 根据后序中序还原二叉树
+      const inNewData = ['f', 'c', 'g', 'a', 'd', 'b', 'e']
+        const postData = ['f', 'g', 'c', 'd', 'e', 'b', 'a']
+
+        function Node(val) {
+        this.value = val
+        this.left = null
+        this.right = null
+      }
+
+      function inPostOrder(inData, postData) {
+        if (
+          inData === null ||
+          postData === null ||
+          inData.length === 0 ||
+          postData.length === 0 ||
+          inData.length !== postData.length
+        ) {
+          return
+        }
+        // 创建根节点，取后序中最后一个
+        const root = new Node(postData[postData.length - 1])
+        // 找到根节点在中序中的位置
+        const index = inData.indexOf(root.value)
+        // 中序遍历的左子树
+        const inLeft = inData.slice(0, index)
+        // 中序遍历的右子树
+        const inRight = inData.slice(index + 1, inData.length)
+        // 后序遍历的左子树
+        const postLeft = postData.slice(0, index)
+        // 后序遍历的右子树
+        const postRight = postData.slice(index, postData.length - 1)
+        // 根据左子树的中序和后序还原左子树并赋值给 root.left
+        root.left = inPostOrder(inLeft, postLeft)
+        // 根据右子树的中序和后序还原右子树并赋值给 root.right
+        root.right = inPostOrder(inRight, postRight)
+        // 返回根节点
+        return root
+      }
+
+      console.log(inPostOrder(inNewData, postData))
+    </script>
+  </body>
+</html>
